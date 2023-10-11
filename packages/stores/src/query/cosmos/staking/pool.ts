@@ -1,0 +1,46 @@
+import { ObservableChainQuery } from "../../chain-query";
+import { StakingPool } from "./types";
+import { ChainGetter } from "../../../chain";
+import { computed, makeObservable } from "mobx";
+import { CoinPretty } from "@keplr-wallet/unit";
+import { QuerySharedContext } from "../../../common";
+
+export class ObservableQueryStakingPool extends ObservableChainQuery<StakingPool> {
+  constructor(
+    sharedContext: QuerySharedContext,
+    chainId: string,
+    chainGetter: ChainGetter
+  ) {
+    super(sharedContext, chainId, chainGetter, "/cosmos/staking/v1beta1/pool");
+
+    makeObservable(this);
+  }
+
+  @computed
+  get notBondedTokens(): CoinPretty {
+    const chainInfo = this.chainGetter.getChain(this.chainId);
+
+    if (!this.response) {
+      return new CoinPretty(chainInfo.stakeCurrency, 0);
+    }
+
+    return new CoinPretty(
+      chainInfo.stakeCurrency,
+      this.response.data.pool.not_bonded_tokens
+    );
+  }
+
+  @computed
+  get bondedTokens(): CoinPretty {
+    const chainInfo = this.chainGetter.getChain(this.chainId);
+
+    if (!this.response) {
+      return new CoinPretty(chainInfo.stakeCurrency, 0);
+    }
+
+    return new CoinPretty(
+      chainInfo.stakeCurrency,
+      this.response.data.pool.bonded_tokens
+    );
+  }
+}
