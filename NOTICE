@@ -1,0 +1,57 @@
+NOTICE
+
+This product uses the Apache License 2.0:
+
+Apache License
+Version 2.0, January 2004
+http://www.apache.org/licenses/LICENSE-2.0
+
+This product includes software component(s) developed by:
+
+Keplr Wallet - Developed by Chainapsis
+URL: https://github.com/chainapsis/keplr-wallet
+
+Ethical Wallet - Notice of Changes
+
+This project contains code that is subject to the Apache License 2.0.
+
+Changes:
+
+1. Manifest Files:
+
+   - Modified key values (name, description, default_title, coinGeeko.id) from 'keplr' to 'ethicalnode'.
+
+2. inject.ts (pacakges/provider/src/inject.ts):
+
+   - Replaced 'keplr' object with 'ethicalNode' object.
+   - Modified Keplr Message Protocol.
+
+3. Images/Icons/Animations:
+
+   - Replaced Keplr images/icons/animations with EthicalNode's.
+
+4. Theme Colors:
+
+   - Changed the entire extension's theme colors to align with the new EthicalNode theme.
+
+5. Design Modifications:
+
+   - Modified all pages' designs according to the Figma file.
+
+6. New Pages Added (as per Figma):
+
+   1. Forget-Password Screen
+   2. Select Chains Inside Extension
+
+7. service.ts (/packages/background/src/chains/service.ts) & config.ts (/packages/extension/src/config.ts):
+
+   - Updated the Github source reference and embedded chains.
+
+8. config.ts (/packages/extension/src/config.ts):
+
+   - Added a total of chains from the EthicalNode website into the extension.
+
+9. ru.json (/packages/extension/src/languages/ru.json):
+   - Added the Russian Language.
+
+These changes were made by Analog Mutations
